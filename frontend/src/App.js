@@ -5,6 +5,7 @@ import Footer from "./Components/Footer.js";
 import ContactPage from "./Components/Contact.js";
 import RegistrationPage from "./Components/Register.js";
 import SignInPage from "./Components/SignIn.js";
+import InternConnect from "./Components/InternConnect/ic.js";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -21,6 +22,8 @@ function App() {
         return <ContactPage />;
       case "Register":
         return <RegistrationPage />;
+      case "InternConnect":
+        return <InternConnect />;
       case "home":
       default:
         return <Home />;

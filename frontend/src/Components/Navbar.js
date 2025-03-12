@@ -23,7 +23,7 @@ const Navbar = ({ navigateTo }) => {
 
   // Navigation items - removed Home from the list
   const navItems = useMemo(() => [
-    { name: "Intern-Connect", page: "" },
+    { name: "Intern-Connect", page: "InternConnect" },
     { name: "Contact", page: "contact" },
     { name: "Register Now", page: "Register" },
   ], []);
