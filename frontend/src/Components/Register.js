@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../RegistrationPage.css'; // We'll define styles here
-import SignInPage from './SignIn.js'; // Import the LoginPage component
+import '../RegistrationPage.css';
+import SignInPage from './SignIn.js';
 
-const RegistrationPage = () => {
+const RegistrationPage = ({ onRegisterSuccess }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -12,6 +12,12 @@ const RegistrationPage = () => {
     password: '',
     confirmPassword: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
+  // API URL - set this to your backend server address
+  const API_URL = 'http://localhost:5000'; // Updated to match likely backend port
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,19 +27,72 @@ const RegistrationPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    
+    // Basic validation
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+    
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Send registration data to backend
+      const response = await fetch(`${API_URL}/api/auth/register`, {  // Updated endpoint to match common backend pattern
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          mobileNumber: formData.mobileNumber
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+      
+      // Registration successful
+      setSuccess('Registration successful!');
+      
+      // Store auth token
+      localStorage.setItem('authToken', data.token);
+      
+      // Call the callback function if provided (for App.js state)
+      if (onRegisterSuccess) {
+        onRegisterSuccess(data.token);
+      } else {
+        // Optional: redirect to login or dashboard if no callback
+        setTimeout(() => {
+          setShowLogin(true);
+        }, 2000);
+      }
+      
+    } catch (err) {
+      console.error('Registration error:', err);
+      setError(err.message || 'Server error. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // If showLogin is true, render the LoginPage component
+  // If user wants to go to login page
   if (showLogin) {
-    return <SignInPage onBackToRegister={() => setShowLogin(false)} />;
+    return <SignInPage onBackToRegister={() => setShowLogin(false)} onSignInSuccess={onRegisterSuccess} />;
   }
 
   return (
     <div className="signup-container">
+      {/* Left panel with background image */}
       <div
         className="left-panel"
         style={{ backgroundImage: 'url("https://source.unsplash.com/random/1200x900/?tech,abstract,lines")' }}
@@ -42,7 +101,11 @@ const RegistrationPage = () => {
         <div className="form-container">
           <h1 className="form-title">REGISTER YOUR ACCOUNT</h1>
           
+          {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">{success}</div>}
+          
           <form onSubmit={handleSubmit}>
+            {/* Form fields */}
             <div className="form-group">
               <input
                 type="text"
@@ -109,7 +172,13 @@ const RegistrationPage = () => {
               />
             </div>
             
-            <button type="submit" className="submit-btn">Continue</button>
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={loading}
+            >
+              {loading ? 'Processing...' : 'Continue'}
+            </button>
           </form>
           
           <div className="login-link">
