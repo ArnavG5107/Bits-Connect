@@ -1,5 +1,4 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 
 // Custom SVG Icons instead of React Icons
 const EmailIcon = () => (
@@ -39,21 +38,96 @@ const LinkedinIcon = () => (
 );
 
 const ContactPage = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      message: ''
-    }
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
   });
 
-  
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
-  const onSubmit = (data) => {
-    console.log('Form submitted:', data);
-    alert('Check the console for submitted data!');
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+    
+    // Clear errors for this field when user makes changes
+    if (errors[id]) {
+      setErrors({ ...errors, [id]: null });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { id } = e.target;
+    setTouched({ ...touched, [id]: true });
+    validateField(id, formData[id]);
+  };
+
+  const validateField = (field, value) => {
+    let newErrors = { ...errors };
+    
+    switch (field) {
+      case 'firstName':
+        if (!value.trim()) {
+          newErrors.firstName = 'First name is required';
+        }
+        break;
+      case 'lastName':
+        if (!value.trim()) {
+          newErrors.lastName = 'Last name is required';
+        }
+        break;
+      case 'email':
+        if (!value.trim()) {
+          newErrors.email = 'Email is required';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+          newErrors.email = 'Invalid email address';
+        }
+        break;
+      case 'phone':
+        if (value && !/^[0-9]{10}$/.test(value)) {
+          newErrors.phone = 'Please enter a valid 10-digit phone number';
+        }
+        break;
+      case 'message':
+        if (!value.trim()) {
+          newErrors.message = 'Please enter your message';
+        }
+        break;
+      default:
+        break;
+    }
+
+    setErrors(newErrors);
+    return !newErrors[field];
+  };
+
+  const validateForm = () => {
+    const fields = ['firstName', 'lastName', 'email', 'message'];
+    let formIsValid = true;
+    
+    // Touch all fields to show errors
+    let allTouched = {};
+    fields.forEach(field => {
+      allTouched[field] = true;
+      if (!validateField(field, formData[field])) {
+        formIsValid = false;
+      }
+    });
+    
+    setTouched({ ...touched, ...allTouched });
+    return formIsValid;
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      console.log('Form submitted:', formData);
+      alert('Check the console for submitted data!');
+    }
   };
 
   return (
@@ -153,17 +227,19 @@ const ContactPage = () => {
               
               {/* Contact Form */}
               <div className="p-8 md:w-3/5">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={onSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="firstName" className="block text-sm text-gray-300 mb-1">First Name</label>
                       <input
                         id="firstName"
-                        {...register("firstName", { required: "First name is required" })}
-                        className={`w-full bg-transparent border-b ${errors.firstName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`w-full bg-transparent border-b ${errors.firstName && touched.firstName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
-                      {errors.firstName && (
-                        <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>
+                      {errors.firstName && touched.firstName && (
+                        <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
                       )}
                     </div>
                     
@@ -171,11 +247,13 @@ const ContactPage = () => {
                       <label htmlFor="lastName" className="block text-sm text-gray-300 mb-1">Last Name</label>
                       <input
                         id="lastName"
-                        {...register("lastName", { required: "Last name is required" })}
-                        className={`w-full bg-transparent border-b ${errors.lastName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`w-full bg-transparent border-b ${errors.lastName && touched.lastName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
-                      {errors.lastName && (
-                        <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>
+                      {errors.lastName && touched.lastName && (
+                        <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
                       )}
                     </div>
                   </div>
@@ -186,17 +264,13 @@ const ContactPage = () => {
                       <input
                         id="email"
                         type="email"
-                        {...register("email", { 
-                          required: "Email is required",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Invalid email address"
-                          }
-                        })}
-                        className={`w-full bg-transparent border-b ${errors.email ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
+                        value={formData.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`w-full bg-transparent border-b ${errors.email && touched.email ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
-                      {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                      {errors.email && touched.email && (
+                        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
                       )}
                     </div>
                     
@@ -207,17 +281,14 @@ const ContactPage = () => {
                         <input
                           id="phone"
                           type="tel"
-                          {...register("phone", { 
-                            pattern: {
-                              value: /^[0-9]{10}$/,
-                              message: "Please enter a valid 10-digit phone number"
-                            }
-                          })}
-                          className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
+                          value={formData.phone}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={`w-full bg-transparent border-b ${errors.phone && touched.phone ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                         />
                       </div>
-                      {errors.phone && (
-                        <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>
+                      {errors.phone && touched.phone && (
+                        <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
                       )}
                     </div>
                   </div>
@@ -229,11 +300,13 @@ const ContactPage = () => {
                       <textarea
                         id="message"
                         rows="4"
-                        {...register("message", { required: "Please enter your message" })}
-                        className={`w-full bg-transparent border-b ${errors.message ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
+                        value={formData.message}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`w-full bg-transparent border-b ${errors.message && touched.message ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       ></textarea>
-                      {errors.message && (
-                        <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                      {errors.message && touched.message && (
+                        <p className="text-red-500 text-xs mt-1">{errors.message}</p>
                       )}
                     </div>
                   </div>
