@@ -1,4 +1,5 @@
 import React from 'react';
+import { default as bitslogo } from "../Assets/bc.jpg";
 
 // Social media icons
 const TwitterIcon = () => (
@@ -71,11 +72,11 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="bg-black p-4 rounded-lg shadow-xl">
+            <div className="bg rounded-lg shadow-xl">
               <img 
-                src="/api/placeholder/300/150" 
+                src={bitslogo} 
                 alt="BITS CONNECT Logo" 
-                className="w-64"
+                className="w-72"
               />
             </div>
           </div>
