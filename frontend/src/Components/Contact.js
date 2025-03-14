@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 // Custom SVG Icons instead of React Icons
 const EmailIcon = () => (
@@ -38,26 +39,21 @@ const LinkedinIcon = () => (
 );
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: ''
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: ''
+    }
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+  const onSubmit = (data) => {
+    console.log('Form submitted:', data);
+    alert('Check the console for submitted data!');
   };
 
   return (
@@ -157,32 +153,30 @@ const ContactPage = () => {
               
               {/* Contact Form */}
               <div className="p-8 md:w-3/5">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="firstName" className="block text-sm text-gray-300 mb-1">First Name</label>
                       <input
-                        type="text"
                         id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-600 py-2 focus:border-blue-500 outline-none text-white"
-                        required
+                        {...register("firstName", { required: "First name is required" })}
+                        className={`w-full bg-transparent border-b ${errors.firstName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
+                      {errors.firstName && (
+                        <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>
+                      )}
                     </div>
                     
                     <div>
                       <label htmlFor="lastName" className="block text-sm text-gray-300 mb-1">Last Name</label>
                       <input
-                        type="text"
                         id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-600 py-2 focus:border-blue-500 outline-none text-white"
-                        required
+                        {...register("lastName", { required: "Last name is required" })}
+                        className={`w-full bg-transparent border-b ${errors.lastName ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
+                      {errors.lastName && (
+                        <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>
+                      )}
                     </div>
                   </div>
                   
@@ -190,14 +184,20 @@ const ContactPage = () => {
                     <div>
                       <label htmlFor="email" className="block text-sm text-gray-300 mb-1">Email</label>
                       <input
-                        type="email"
                         id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-600 py-2 focus:border-blue-500 outline-none text-white"
-                        required
+                        type="email"
+                        {...register("email", { 
+                          required: "Email is required",
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: "Invalid email address"
+                          }
+                        })}
+                        className={`w-full bg-transparent border-b ${errors.email ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -205,14 +205,20 @@ const ContactPage = () => {
                       <div className="flex">
                         <span className="text-gray-500 border-b border-gray-600 py-2 pr-2">+91</span>
                         <input
-                          type="tel"
                           id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full bg-transparent border-b border-gray-600 py-2 focus:border-blue-500 outline-none text-white"
+                          type="tel"
+                          {...register("phone", { 
+                            pattern: {
+                              value: /^[0-9]{10}$/,
+                              message: "Please enter a valid 10-digit phone number"
+                            }
+                          })}
+                          className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                         />
                       </div>
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>
+                      )}
                     </div>
                   </div>
                   
@@ -222,13 +228,13 @@ const ContactPage = () => {
                       <span className="absolute text-xs text-gray-500 -top-6">Write your message...</span>
                       <textarea
                         id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
                         rows="4"
-                        className="w-full bg-transparent border-b border-gray-600 py-2 focus:border-blue-500 outline-none text-white"
-                        required
+                        {...register("message", { required: "Please enter your message" })}
+                        className={`w-full bg-transparent border-b ${errors.message ? 'border-red-500' : 'border-gray-600'} py-2 focus:border-blue-500 outline-none text-white`}
                       ></textarea>
+                      {errors.message && (
+                        <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                      )}
                     </div>
                   </div>
                   
