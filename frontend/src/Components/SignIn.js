@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../RegistrationPage.css';
+import LeftSideImage from '../Assets/BL.png'; // Import your image here
 
 const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
   const [formData, setFormData] = useState({
@@ -143,12 +144,34 @@ const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
   };
 
   return (
-    <div className="signup-container">
-      <div
-        className="left-panel"
-        style={{ backgroundImage: 'url("https://source.unsplash.com/random/1200x900/?tech,abstract,lines")' }}
-      ></div>
-      <div className="right-panel">
+    <div className="signup-container" style={{ display: 'flex', height: '100vh' }}>
+      {/* Left side with custom image - Reduced size and centered */}
+      <div 
+        className="left-panel" 
+        style={{ 
+          width: '20%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#0a192f'
+        }}
+      >
+        <div style={{
+          width: '80%',  // Reduced size - only 80% of the panel width
+          height: '40%', // Reduced size - only 40% of the panel height
+          backgroundImage: `url(${LeftSideImage})`,
+          backgroundSize: 'contain', // Changed from 'cover' to 'contain'
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          margin: 'auto'
+        }}>
+        </div>
+      </div>
+      
+      {/* Right panel - Form section */}
+      <div className="right-panel" style={{ width: '60%', overflow: 'auto' }}>
         <div className="form-container">
           <h1 className="form-title">SIGN IN</h1>
           
