@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../RegistrationPage.css';
 import SignInPage from './SignIn.js';
+import LeftSideImage from '../Assets/BL.png'; // Import the same image as SignIn page
 
 const RegistrationPage = ({ onRegisterSuccess }) => {
   const [showLogin, setShowLogin] = useState(false);
@@ -113,13 +114,33 @@ const RegistrationPage = ({ onRegisterSuccess }) => {
   }
 
   return (
-    <div className="signup-container">
-      {/* Left panel with background image */}
-      <div
-        className="left-panel"
-        style={{ backgroundImage: 'url("https://source.unsplash.com/random/1200x900/?tech,abstract,lines")' }}
-      ></div>
-      <div className="right-panel">
+    <div className="signup-container" style={{ display: 'flex', height: '100vh' }}>
+      {/* Left panel with the same image styling as SignInPage */}
+      <div 
+        className="left-panel" 
+        style={{ 
+          width: '20%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#0a192f'
+        }}
+      >
+        <div style={{
+          width: '80%',  // Same size as in SignInPage
+          height: '40%', // Same size as in SignInPage
+          backgroundImage: `url(${LeftSideImage})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          margin: 'auto'
+        }}>
+        </div>
+      </div>
+      
+      <div className="right-panel" style={{ width: '60%', overflow: 'auto' }}>
         <div className="form-container">
           <h1 className="form-title">REGISTER YOUR ACCOUNT</h1>
           
