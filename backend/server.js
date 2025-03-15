@@ -10,7 +10,7 @@ import path from 'path';
 import authRoutes from './routes/auth.js';
 import getInternshipsRouter from './routes/getInternships.js';
 import saveInternshipRouter from './routes/saveInternships.js';
-import uploadRouter from './routes/upload.js';
+import uploadRouter from './Upload.js';
 
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
