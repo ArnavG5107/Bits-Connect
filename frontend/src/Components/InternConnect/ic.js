@@ -1,3 +1,4 @@
+import React from 'react';
 import "./App.css"
 import CompanyCard from "./ComapanyCard.js"
 import logo from "../../Assets/intern-connect-logo.svg"
