@@ -7,7 +7,7 @@ import Footer from "./Components/Footer.js";
 import ContactPage from "./Components/Contact.js";
 import RegistrationPage from "./Components/Register.js";
 import SignInPage from "./Components/SignIn.js";
-import InternConnect from "./Components/InternConnect/ic.js";
+import InternConnect from "./Components/InternConnect/InternConnect.js";
 import Dashboard from './Components/Dashboard.js';
 import Resume from './Components/resume.js'; // Added import for Resume component
 
