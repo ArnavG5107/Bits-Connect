@@ -673,7 +673,6 @@ const Resume = () => {
                   <button className="cancel-button" onClick={toggleLanguageForm}>Cancel</button>
                   <button className="save-button" onClick={addLanguage}>Save</button>
                 </div>
-                <div class="vertical-text">Resume</div>
               </div>
             )}
           </div>
