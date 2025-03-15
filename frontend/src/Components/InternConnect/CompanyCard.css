@@ -1,0 +1,171 @@
+.company-card {
+  position: relative;
+  background: linear-gradient(to bottom, #1a1a1a, #000000);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #333333;
+  height: 100%;
+  transition: transform 0.3s ease;
+  min-height: 450px;
+}
+
+.company-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Orange corner accents */
+.corner {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-color: #f97316;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+  transform: rotate(45deg) translate(-70%, -70%);
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(45deg) translate(70%, -70%);
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotate(45deg) translate(-70%, 70%);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(45deg) translate(70%, 70%);
+}
+
+.card-content {
+  position: relative;
+  padding: 24px;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-logo {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.company-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.company-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4e89e8;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.company-subtitle {
+  font-size: 1rem;
+  color: #f97316;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.company-description {
+  color: #cccccc;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.register-button,
+.details-button {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.register-button {
+  background-color: #f97316;
+  color: white;
+}
+
+.register-button:hover {
+  background-color: #ea580c;
+}
+
+.details-button {
+  background-color: #1d4ed8;
+  color: white;
+}
+
+.details-button:hover {
+  background-color: #2563eb;
+}
+
+/* Internship details styling */
+.internship-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.details-title {
+  font-size: 1.2rem;
+  color: #4e89e8;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.detail-item {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.full-width {
+  flex-direction: column;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #f97316;
+  min-width: 100px;
+  margin-right: 8px;
+}
+
+.detail-value {
+  color: #cccccc;
+}
+
+.detail-description {
+  margin-top: 8px;
+  line-height: 1.5;
+}
