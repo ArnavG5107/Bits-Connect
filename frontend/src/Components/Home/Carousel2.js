@@ -1,13 +1,28 @@
 import React from 'react';
-import Bits2 from '../../Assets/Bits2.jpg'; // Adjust path as needed
+import b1 from '../../Assets/Bits2.jpg';
+import b2 from '../../Assets/Hari.jpg';
+import b3 from '../../Assets/karthk.jpg';
+import b4 from '../../Assets/krishna mehra.jpg';
+import b5 from '../../Assets/manav.jpg';
+import b6 from '../../Assets/Nikesh.jpg';
+import b7 from '../../Assets/phanndra.jpg';
+import b8 from '../../Assets/raju.jpg';
+import b9 from '../../Assets/Sanjay.jpg';
+import b10 from '../../Assets/vivek.webp';
+
 
 const Carousel2 = () => {
     const items = [
-      { name: "Innovation", subtitle: "Shaping the Future", image: Bits2 },
-      { name: "Technology", subtitle: "Advancing Human Potential", image: Bits2 },
-      { name: "Future", subtitle: "Paving the Path Forward", image: Bits2 },
-      { name: "Revolution", subtitle: "Transforming Industries", image: Bits2 },
-      { name: "Progress", subtitle: "Driving Change", image: Bits2 },
+      { name: "Innovation", subtitle: "Shaping the Future", image: b1},
+      { name: "Technology", subtitle: "Advancing Human Potential", image: b2 },
+      { name: "Future", subtitle: "Paving the Path Forward", image: b3 },
+      { name: "Revolution", subtitle: "Transforming Industries", image: b4 },
+      { name: "Progress", subtitle: "Driving Change", image: b5 },
+      { name: "Innovation", subtitle: "Shaping the Future", image: b6 },
+      { name: "Technology", subtitle: "Advancing Human Potential", image: b7 },
+      { name: "Future", subtitle: "Paving the Path Forward", image: b8 },
+      { name: "Revolution", subtitle: "Transforming Industries", image: b9 },
+      { name: "Progress", subtitle: "Driving Change", image: b10 },
     ];
   
     // Duplicate items to ensure seamless infinite scrolling
