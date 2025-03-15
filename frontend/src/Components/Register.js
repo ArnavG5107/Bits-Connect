@@ -17,7 +17,7 @@ const RegistrationPage = ({ onRegisterSuccess }) => {
   const [success, setSuccess] = useState(null);
 
   // API URL - set this to your backend server address
-  const API_URL = 'http://localhost:5000'; // Updated to match likely backend port
+  const API_URL = 'http://localhost:5000'; // This is correct
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +40,16 @@ const RegistrationPage = ({ onRegisterSuccess }) => {
       setLoading(true);
       setError(null);
       
+      console.log('Submitting registration data:', {
+        name: formData.fullName,
+        username: formData.username,
+        email: formData.email,
+        mobileNumber: formData.mobileNumber
+        // password omitted for logging
+      });
+      
       // Send registration data to backend
-      const response = await fetch(`${API_URL}/api/auth/register`, {  // Updated endpoint to match common backend pattern
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,20 +60,34 @@ const RegistrationPage = ({ onRegisterSuccess }) => {
           email: formData.email,
           password: formData.password,
           mobileNumber: formData.mobileNumber
-        })
+        }),
+        credentials: 'include' // This helps with cookies if you implement token-based auth later
       });
       
+      // Check content type to handle non-JSON responses
+      const contentType = response.headers.get('content-type');
+      
+      if (!contentType || !contentType.includes('application/json')) {
+        // Handle non-JSON responses
+        const textResponse = await response.text();
+        console.error('Non-JSON response:', textResponse);
+        throw new Error('Server returned an invalid response format. Please try again later.');
+      }
+      
       const data = await response.json();
+      console.log('Registration response:', data);
       
       if (!response.ok) {
         throw new Error(data.message || 'Registration failed');
       }
       
       // Registration successful
-      setSuccess('Registration successful!');
+      setSuccess('Registration successful! Your data has been saved to MongoDB.');
       
       // Store auth token
-      localStorage.setItem('authToken', data.token);
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
       
       // Call the callback function if provided (for App.js state)
       if (onRegisterSuccess) {
