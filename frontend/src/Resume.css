@@ -15,6 +15,8 @@ body {
   flex-direction: column;
 }
 
+
+
 /* Navbar styles */
 .navbar {
   position: fixed;
@@ -121,6 +123,23 @@ body {
   margin-top: 25px;
   color: #e2c0ee;
   font-size: 14px;
+}
+
+.vertical-text {
+  position: fixed; /* Fixed position instead of absolute */
+  right: 20px; /* Positioned closer to the edge */
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-size: 60px; /* Larger font size */
+  font-weight: bold;
+  color: #000; /* Black color for better visibility */
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-family: 'Arial', sans-serif;
+  z-index: 9999; /* Very high z-index to appear above other elements */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  pointer-events: none; /* Prevents the text from interfering with clicks */
 }
 
 /* Header bar */
