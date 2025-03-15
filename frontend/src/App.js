@@ -14,12 +14,26 @@ import Resume from './Components/resume.js'; // Added import for Resume componen
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
   
-  // Check authentication on initial load
+  // Check for page reload and set current page to home
   useEffect(() => {
-    // If there's an authToken and we're on home page, redirect to profile
+    // Check if this is a page reload
+    const pageAccessedByReload = (
+      (window.performance.navigation && window.performance.navigation.type === 1) ||
+      window.performance.getEntriesByType('navigation')
+        .map((nav) => nav.type)
+        .includes('reload')
+    );
+    
+    // If page was reloaded, set to home page regardless of previous state
+    if (pageAccessedByReload) {
+      setCurrentPage("home");
+      return;
+    }
+    
+    // If not a reload and there's an authToken, proceed with normal authentication check
     const isAuthenticated = localStorage.getItem('authToken') !== null;
     if (isAuthenticated && currentPage === "home") {
-      setCurrentPage("profile"); // Changed from dashboard to profile
+      setCurrentPage("profile");
     }
   }, []);
 
@@ -40,7 +54,7 @@ function App() {
   // Handle successful authentication
   const handleAuthSuccess = (token) => {
     localStorage.setItem('authToken', token);
-    setCurrentPage("profile"); // Changed from dashboard to profile
+    setCurrentPage("profile");
   };
 
   // Handle logout
@@ -59,7 +73,7 @@ function App() {
       case "signIn":
         return <SignInPage onSignInSuccess={handleAuthSuccess} />;
       case "InternConnect":
-        return <InternConnect />;
+        return <InternConnect key="internConnect" />;
       case "dashboard":
         return <Dashboard onLogout={handleLogout} />;
       case "profile": // Added new case for profile/resume page
