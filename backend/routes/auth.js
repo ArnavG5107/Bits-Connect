@@ -9,8 +9,8 @@ const User = require('../models/User');
 const asyncHandler = fn => (req, res, next) => {
   return Promise.resolve(fn(req, res, next)).catch(err => {
     console.error('API Error:', err);
-    res.status(500).json({ 
-      success: false, 
+    res.status(500).json({
+      success: false,
       message: 'Server error',
       error: process.env.NODE_ENV === 'development' ? err.message : undefined
     });
@@ -19,7 +19,7 @@ const asyncHandler = fn => (req, res, next) => {
 
 // Register endpoint
 router.post('/register', asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password, mobileNumber } = req.body;
 
   // Validation
   if (!name || !email || !password) {
@@ -39,15 +39,17 @@ router.post('/register', asyncHandler(async (req, res) => {
   // Create user
   const user = new User({
     name,
+    username,
     email,
-    password: hashedPassword
+    password: hashedPassword,
+    mobileNumber
   });
 
   await user.save();
 
   // Generate token
   const token = jwt.sign(
-    { id: user._id }, 
+    { id: user._id },
     process.env.JWT_SECRET || 'your_jwt_secret',
     { expiresIn: '1d' }
   );
@@ -86,7 +88,7 @@ router.post('/login', asyncHandler(async (req, res) => {
 
   // Generate token
   const token = jwt.sign(
-    { id: user._id }, 
+    { id: user._id },
     process.env.JWT_SECRET || 'your_jwt_secret',
     { expiresIn: '1d' }
   );
