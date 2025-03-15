@@ -1,6 +1,6 @@
 import express from 'express';
 import Internship from '../models/Internship.js';
-import { saveBase64Image } from './upload.js';
+import { saveBase64Image } from '../Upload.js';
 
 const router = express.Router();
 
