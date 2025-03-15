@@ -74,9 +74,9 @@ const StatisticsSection = () => {
       
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <StatCard title="Attendees" value="25K+" />
-          <StatCard title="Startups" value="400+" />
-          <StatCard title="Events" value="20+" />
+          <StatCard title="Students" value="25K+" />
+          <StatCard title="Internships" value="400+" />
+          <StatCard title="Companies" value="20+" />
         </div>
       </div>
     </div>
