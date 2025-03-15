@@ -459,7 +459,7 @@ const Resume = () => {
                 <input 
                   type="tel" 
                   name="phone" 
-                  placeholder="+1 (123) 456-7890" 
+                  placeholder="+91" 
                   value={contact.phone} 
                   onChange={handleContactChange} 
                 />
