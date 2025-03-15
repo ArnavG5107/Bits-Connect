@@ -140,6 +140,21 @@ const Resume = () => {
     }
   };
 
+  const verticalStyle = {
+    position: 'fixed',
+    right: '-40px',
+    top: '40%', // Moved up to avoid footer
+    transform: 'rotate(90deg)',
+    fontSize: '90px',
+    fontWeight: 'bold',
+    color: '#ffffff',
+    zIndex: 1000, // Lower z-index so it won't overlap important elements
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+    letterSpacing: '5px',
+    pointerEvents: 'none' // Ensures it doesn't interfere with clicking elements
+  };
+
+
   const toggleExperienceForm = () => {
     setShowExperienceForm(!showExperienceForm);
   };
@@ -231,8 +246,13 @@ const Resume = () => {
 
 
   return (
+    
     <div className="resume-container">
       <div className="resume-header"></div>
+
+      <div style={verticalStyle}>
+      RESUME
+    </div>
 
       <div className="resume-content">
         {/* Left Section */}
@@ -312,6 +332,7 @@ const Resume = () => {
                     />
                   </div>
                 </div>
+
                 
                 <div className="form-group checkbox-group">
                   <input 
@@ -652,6 +673,7 @@ const Resume = () => {
                   <button className="cancel-button" onClick={toggleLanguageForm}>Cancel</button>
                   <button className="save-button" onClick={addLanguage}>Save</button>
                 </div>
+                <div class="vertical-text">Resume</div>
               </div>
             )}
           </div>
