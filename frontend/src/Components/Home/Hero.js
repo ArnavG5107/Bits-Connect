@@ -42,6 +42,17 @@ const Hero = () => {
         });
     };
 
+    // Common style for input fields
+    const inputStyle = {
+        width: '100%',
+        padding: '0.75rem',
+        borderRadius: '4px',
+        border: '1px solid #ccc',
+        backgroundColor: 'white', // Ensuring white background
+        color: '#333', // Darker text for better contrast
+        fontSize: '1rem' // Ensuring readable font size
+    };
+
     return (
         <div style={{
             position: 'relative',
@@ -192,7 +203,8 @@ const Hero = () => {
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    color: '#333'
                                 }}>
                                     Company Name *
                                 </label>
@@ -202,12 +214,7 @@ const Hero = () => {
                                     value={formData.companyName}
                                     onChange={handleChange}
                                     required
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        borderRadius: '4px',
-                                        border: '1px solid #ccc'
-                                    }}
+                                    style={inputStyle}
                                 />
                             </div>
 
@@ -221,7 +228,8 @@ const Hero = () => {
                                     <label style={{
                                         display: 'block',
                                         marginBottom: '0.5rem',
-                                        fontWeight: '500'
+                                        fontWeight: '500',
+                                        color: '#333'
                                     }}>
                                         Contact Email *
                                     </label>
@@ -231,19 +239,15 @@ const Hero = () => {
                                         value={formData.contactEmail}
                                         onChange={handleChange}
                                         required
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.75rem',
-                                            borderRadius: '4px',
-                                            border: '1px solid #ccc'
-                                        }}
+                                        style={inputStyle}
                                     />
                                 </div>
                                 <div>
                                     <label style={{
                                         display: 'block',
                                         marginBottom: '0.5rem',
-                                        fontWeight: '500'
+                                        fontWeight: '500',
+                                        color: '#333'
                                     }}>
                                         Contact Phone *
                                     </label>
@@ -253,12 +257,7 @@ const Hero = () => {
                                         value={formData.contactPhone}
                                         onChange={handleChange}
                                         required
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.75rem',
-                                            borderRadius: '4px',
-                                            border: '1px solid #ccc'
-                                        }}
+                                        style={inputStyle}
                                     />
                                 </div>
                             </div>
@@ -267,7 +266,8 @@ const Hero = () => {
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    color: '#333'
                                 }}>
                                     Position Title *
                                 </label>
@@ -277,12 +277,7 @@ const Hero = () => {
                                     value={formData.positionTitle}
                                     onChange={handleChange}
                                     required
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        borderRadius: '4px',
-                                        border: '1px solid #ccc'
-                                    }}
+                                    style={inputStyle}
                                 />
                             </div>
 
@@ -290,7 +285,8 @@ const Hero = () => {
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    color: '#333'
                                 }}>
                                     Prerequisites *
                                 </label>
@@ -300,12 +296,7 @@ const Hero = () => {
                                     onChange={handleChange}
                                     required
                                     rows="3"
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        borderRadius: '4px',
-                                        border: '1px solid #ccc'
-                                    }}
+                                    style={inputStyle}
                                     placeholder="Skills, qualifications, etc."
                                 />
                             </div>
@@ -320,7 +311,8 @@ const Hero = () => {
                                     <label style={{
                                         display: 'block',
                                         marginBottom: '0.5rem',
-                                        fontWeight: '500'
+                                        fontWeight: '500',
+                                        color: '#333'
                                     }}>
                                         Duration
                                     </label>
@@ -329,12 +321,7 @@ const Hero = () => {
                                         name="duration"
                                         value={formData.duration}
                                         onChange={handleChange}
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.75rem',
-                                            borderRadius: '4px',
-                                            border: '1px solid #ccc'
-                                        }}
+                                        style={inputStyle}
                                         placeholder="e.g., 3 months"
                                     />
                                 </div>
@@ -342,7 +329,8 @@ const Hero = () => {
                                     <label style={{
                                         display: 'block',
                                         marginBottom: '0.5rem',
-                                        fontWeight: '500'
+                                        fontWeight: '500',
+                                        color: '#333'
                                     }}>
                                         Stipend
                                     </label>
@@ -351,12 +339,7 @@ const Hero = () => {
                                         name="stipend"
                                         value={formData.stipend}
                                         onChange={handleChange}
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.75rem',
-                                            borderRadius: '4px',
-                                            border: '1px solid #ccc'
-                                        }}
+                                        style={inputStyle}
                                         placeholder="e.g., ₹15,000/month"
                                     />
                                 </div>
@@ -366,7 +349,8 @@ const Hero = () => {
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    color: '#333'
                                 }}>
                                     Location
                                 </label>
@@ -375,12 +359,7 @@ const Hero = () => {
                                     name="location"
                                     value={formData.location}
                                     onChange={handleChange}
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        borderRadius: '4px',
-                                        border: '1px solid #ccc'
-                                    }}
+                                    style={inputStyle}
                                     placeholder="e.g., Remote, Hyderabad, etc."
                                 />
                             </div>
@@ -389,7 +368,8 @@ const Hero = () => {
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    color: '#333'
                                 }}>
                                     Description
                                 </label>
@@ -398,12 +378,7 @@ const Hero = () => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     rows="4"
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        borderRadius: '4px',
-                                        border: '1px solid #ccc'
-                                    }}
+                                    style={inputStyle}
                                     placeholder="Provide details about the internship position"
                                 />
                             </div>
@@ -422,7 +397,8 @@ const Hero = () => {
                                         backgroundColor: '#f3f4f6',
                                         border: 'none',
                                         fontWeight: '500',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        color: '#333'
                                     }}
                                 >
                                     Cancel
