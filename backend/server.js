@@ -1,4 +1,3 @@
-// server.js
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -7,12 +6,18 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from 'path';
 
+// Import routes
+import authRoutes from './routes/auth.js';
+import getInternshipsRouter from './routes/getInternships.js';
+import saveInternshipRouter from './routes/saveInternships.js';
+import uploadRouter from './routes/upload.js';
+
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Import database connection
-import connectDB from './db.js'; // Note the .js extension is required in ES modules
+import connectDB from './db.js';
 
 dotenv.config();
 
@@ -26,14 +31,20 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' })); // Increase payload limit for base64 images
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Import routes (need to change these to ES module format as well)
-import authRoutes from './routes/auth.js';
+// Serve uploaded files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // API routes
 app.use('/api/auth', authRoutes);
+app.use('/api', getInternshipsRouter);
+app.use('/api', saveInternshipRouter);
+app.use('/api/upload', uploadRouter);
+
 console.log('Auth routes loaded');
+console.log('Internship routes loaded');
 
 // Test route
 app.get('/api/test', (req, res) => {
@@ -43,4 +54,3 @@ app.get('/api/test', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
