@@ -88,6 +88,17 @@ const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
     }
   };
 
+  // Define input styles with black text
+  const inputStyle = {
+    width: '100%',
+    padding: '12px 15px',
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: '#ffffff',
+    color: '#000000', // Changed to black
+    fontSize: '14px'
+  };
+
   return (
     <div className="signup-container" style={{ display: 'flex', height: '100vh' }}>
       {/* Left side with custom image */}
@@ -132,6 +143,7 @@ const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                style={inputStyle}
               />
             </div>
             
@@ -143,6 +155,7 @@ const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
                 value={formData.password}
                 onChange={handleChange}
                 required
+                style={inputStyle}
               />
             </div>
             
@@ -155,7 +168,7 @@ const SignInPage = ({ onBackToRegister, onLoginSuccess }) => {
             </button>
           </form>
           
-          <div className="login-link">
+          <div className="login-link" style={{ color: 'white' }}>
             Don't have an account? <a href="#" onClick={(e) => {e.preventDefault(); onBackToRegister()}}>Register →</a>
           </div>
         </div>
