@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js';
 import getInternshipsRouter from './routes/getInternships.js';
 import saveInternshipRouter from './routes/saveInternships.js';
 import uploadRouter from './Upload.js';
+import contactRouter from './routes/contact.js'; // Import the new contact router
 
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -42,9 +43,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api', getInternshipsRouter);
 app.use('/api', saveInternshipRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api', contactRouter); // Add the contact routes
 
 console.log('Auth routes loaded');
 console.log('Internship routes loaded');
+console.log('Contact routes loaded');
 
 // Test route
 app.get('/api/test', (req, res) => {
