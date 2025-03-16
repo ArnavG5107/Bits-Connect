@@ -11,7 +11,7 @@ import authRoutes from './routes/auth.js';
 import getInternshipsRouter from './routes/getInternships.js';
 import saveInternshipRouter from './routes/saveInternships.js';
 import uploadRouter from './Upload.js';
-import contactRouter from './routes/contact.js'; // Import the new contact router
+import contactRouter from './routes/contact.js'; // This now uses Resend
 
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -43,11 +43,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api', getInternshipsRouter);
 app.use('/api', saveInternshipRouter);
 app.use('/api/upload', uploadRouter);
-app.use('/api', contactRouter); // Add the contact routes
+app.use('/api', contactRouter); // Contact routes now use Resend
 
 console.log('Auth routes loaded');
 console.log('Internship routes loaded');
-console.log('Contact routes loaded');
+console.log('Contact routes loaded with Resend email service');
 
 // Test route
 app.get('/api/test', (req, res) => {
@@ -55,5 +55,14 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'MongoDB connection is working' });
 });
 
+// Test Resend configuration
+app.get('/api/test-resend', (req, res) => {
+  if (process.env.RESEND_API_KEY) {
+    res.json({ message: 'Resend API key is configured' });
+  } else {
+    res.status(500).json({ message: 'Resend API key is missing' });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT} with Resend email service`));
