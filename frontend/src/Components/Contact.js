@@ -3,90 +3,90 @@ import BG from "../Assets/figmabg.png";
 
 // SVG Icons components remain unchanged
 const EmailIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-      <polyline points="22,6 12,13 2,6"></polyline>
-    </svg>
-  );
-  
-  const LocationIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-      <circle cx="12" cy="10" r="3"></circle>
-    </svg>
-  );
-  
-  const TwitterIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-    </svg>
-  );
-  
-  const InstagramIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-    </svg>
-  );
-  
-  const LinkedinIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-      <rect x="2" y="9" width="4" height="12"></rect>
-      <circle cx="4" cy="4" r="2"></circle>
-    </svg>
-  );
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+    <polyline points="22,6 12,13 2,6"></polyline>
+  </svg>
+);
+
+const LocationIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+    <circle cx="12" cy="10" r="3"></circle>
+  </svg>
+);
+
+const TwitterIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+const LinkedinIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -166,7 +166,7 @@ const ContactPage = () => {
         // Get the API URL from environment variables or use default
         const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
         
-        // Using fetch instead of axios
+        // Using fetch to send data to our Resend-enabled backend
         const response = await fetch(`${baseURL}/api/contact`, {
           method: 'POST',
           headers: {
@@ -187,10 +187,10 @@ const ContactPage = () => {
           throw new Error(data.message || 'Failed to send message');
         }
 
-        console.log("Form submitted:", data);
+        console.log("Form submitted successfully:", data);
         setSubmitStatus({
           type: "success",
-          message: "Thank you! Your message has been sent successfully.",
+          message: "Thank you! Your message has been sent successfully with Resend.",
         });
 
         // Reset form after successful submission
@@ -206,7 +206,7 @@ const ContactPage = () => {
         console.error("Error submitting form:", error);
         
         // Error handling
-        let errorMessage = "There was a problem sending your message. Please try again later.";
+        let errorMessage = "There was a problem sending your message with Resend. Please try again later.";
         
         if (error.message) {
           errorMessage = error.message;
@@ -258,7 +258,7 @@ ${formData.message}
     }
   };
 
-  // The rest of the component (return JSX) remains with minor modifications
+  // The JSX render part
   return (
     <div className="relative h-screen w-full overflow-hidden bg-gray-900">
       {/* Background image */}
@@ -294,10 +294,10 @@ ${formData.message}
                       <EmailIcon />
                     </span>
                     <a
-                      href="mailto:arnavgupta5106@gmail.com"
+                      href="mailto:arnavgupta5107@gmail.com"
                       className="hover:text-white"
                     >
-                      arnavgupta5106@gmail.com
+                      arnavgupta5107@gmail.com
                     </a>
                   </div>
 
@@ -404,7 +404,7 @@ ${formData.message}
                       </div>
 
                       <div>
-                        <label
+                      <label
                           htmlFor="lastName"
                           className="block text-sm text-gray-300 mb-1"
                         >
@@ -579,13 +579,13 @@ ${formData.message}
                             Sending...
                           </>
                         ) : (
-                          "Send via Server"
+                          "Send with Resend"
                         )}
                       </button>
                     </div>
                     
                     <p className="text-gray-400 text-xs text-center mt-4">
-                      Choose "Open Email Client" to send directly from your email, or "Send via Server" to use our server.
+                      Choose "Open Email Client" to send directly from your email, or "Send with Resend" to use our email service.
                     </p>
                   </form>
                 )}
